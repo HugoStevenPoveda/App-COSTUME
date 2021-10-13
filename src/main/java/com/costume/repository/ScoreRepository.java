@@ -5,9 +5,9 @@
  */
 package com.costume.repository;
 
-import com.costume.repository.crud.ScoreCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import com.costume.repository.dao.ScoreDaoRepository;
 
 /**
  *
@@ -17,6 +17,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ScoreRepository {
     @Autowired
-    private ScoreCrudRepository scoreCrudRepository;
+    private ScoreDaoRepository scoreCrudRepository;
     
 }

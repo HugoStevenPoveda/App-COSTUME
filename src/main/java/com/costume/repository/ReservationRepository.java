@@ -5,9 +5,12 @@
  */
 package com.costume.repository;
 
-import com.costume.repository.crud.ReservationCrudRepository;
+import com.costume.model.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import com.costume.repository.dao.ReservationDaoRepository;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -16,6 +19,23 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ReservationRepository {
     @Autowired
-    private ReservationCrudRepository reservationCrudRepository;
+    private ReservationDaoRepository reservationDaoRepository;
+    
+    public List<Reservation> getAllReservation() {
+        List<Reservation> listReservation = (List<Reservation>)reservationDaoRepository.findAll();
+        return listReservation;
+    }
+
+
+    public Optional<Reservation> getReservation(Integer id) {
+        Optional<Reservation> reservationGeById = reservationDaoRepository.findById(id);
+
+        return reservationGeById;
+    }
+
+    public Reservation saveReservation(Reservation reservation) {
+        Reservation newReservation = reservationDaoRepository.save(reservation);
+        return newReservation;
+    }
     
 }

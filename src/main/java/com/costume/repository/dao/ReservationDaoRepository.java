@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.costume.repository.crud;
+package com.costume.repository.dao;
 
-import com.costume.model.Score;
+import com.costume.model.Reservation;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author hugog
  */
-public interface ScoreCrudRepository extends CrudRepository<Score, Integer> {
+public interface ReservationDaoRepository extends CrudRepository<Reservation, Integer> {
     
 }

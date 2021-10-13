@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import com.costume.repository.crud.ScoreCrudRepository;
+import com.costume.repository.dao.ScoreDaoRepository;
 
 /**
  *
@@ -29,7 +29,7 @@ import com.costume.repository.crud.ScoreCrudRepository;
 @RequestMapping("/api/Score")
 public class ScoreRestController {
     @Autowired
-    private ScoreCrudRepository scoreRepository;
+    private ScoreDaoRepository scoreRepository;
     
     @GetMapping("/all")
     public ResponseEntity<List<Score> > listScores() {

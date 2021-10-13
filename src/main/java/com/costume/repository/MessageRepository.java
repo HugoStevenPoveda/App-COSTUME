@@ -5,19 +5,38 @@
  */
 package com.costume.repository;
 
-import com.costume.repository.crud.MessageCrudRepository;
+import com.costume.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import com.costume.repository.dao.MessageDaoRepository;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
  * @author hugog
  */
-
 @Repository
 public class MessageRepository {
-    
+
     @Autowired
-    private MessageCrudRepository messageCrudRepository;
-    
+    private MessageDaoRepository messageDaoRepository;
+
+    public List<Message> getAllMessage() {
+        List<Message> listMessage = (List<Message>) messageDaoRepository.findAll();
+
+        return listMessage;
+    }
+
+    public Optional<Message> getMessage(Integer id) {
+        Optional<Message> messageGeById = messageDaoRepository.findById(id);
+
+        return messageGeById;
+    }
+
+    public Message saveMessage(Message message) {
+        Message newMessage = messageDaoRepository.save(message);
+        return newMessage;
+    }
+
 }

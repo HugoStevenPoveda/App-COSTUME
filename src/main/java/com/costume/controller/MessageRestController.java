@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import com.costume.repository.crud.MessageCrudRepository;
+import com.costume.service.MessageService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  *
@@ -27,13 +28,14 @@ import com.costume.repository.crud.MessageCrudRepository;
  */
 @RestController
 @RequestMapping("/api/Message")
+@CrossOrigin(origins = "*")
 public class MessageRestController {
     @Autowired
-    private MessageCrudRepository messageRepository;
+    private MessageService messageService;
     
     @GetMapping("/all")
     public ResponseEntity<List<Message>> listaLLMesage() {
-        List<Message> listMessages = ( List<Message> )messageRepository.findAll();
+        List<Message> listMessages = messageService.getAllMessage();
         
         return ResponseEntity.ok(listMessages);
     }
@@ -55,7 +57,7 @@ public class MessageRestController {
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Message> postMessage(@RequestBody Message message ) {
-        Message newMessage = messageRepository.save(message);
+        Message newMessage = messageService.saveMessage(message);
         return ResponseEntity.ok(newMessage);
     }
     

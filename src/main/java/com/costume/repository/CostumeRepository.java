@@ -5,9 +5,12 @@
  */
 package com.costume.repository;
 
-import com.costume.repository.crud.CostumeCrudRepository;
+import com.costume.model.Costume;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import com.costume.repository.dao.CostumeDaoRepository;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -17,6 +20,26 @@ import org.springframework.stereotype.Repository;
 public class CostumeRepository {
     
     @Autowired
-    private CostumeCrudRepository costumeCrudRepository;
+    private CostumeDaoRepository costumeDaoRepository;
+    
+    
+    public List<Costume> getAllCostume(){
+        List<Costume> listCostumes =(List<Costume>)costumeDaoRepository.findAll();
+        
+        return listCostumes;
+    }
+    
+    
+    public  Optional<Costume> getCostume(Integer id ){
+        Optional<Costume> costumeGeById = costumeDaoRepository.findById(id);
+    
+    return costumeGeById;
+    }
+    
+    
+    public Costume saveCostume(Costume costume){
+        Costume newCostume = costumeDaoRepository.save(costume);
+    return newCostume;
+    }
     
 }

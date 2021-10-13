@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import com.costume.repository.crud.ClientCrudRepository;
+import com.costume.service.ClientService;
 
 /**
  *
@@ -27,13 +27,14 @@ import com.costume.repository.crud.ClientCrudRepository;
  */
 @RestController
 @RequestMapping("/api/Client")
+//@CrossOrigin(origins = "*")
 public class ClientRestController {
     @Autowired
-    private ClientCrudRepository clientRepository;
+    private ClientService clientService;
     
     @GetMapping("/all")
     public ResponseEntity<List<Client>>listClients() {
-           List<Client> listClients = (List<Client>)clientRepository.findAll();
+           List<Client> listClients = clientService.getAllClient();
         return ResponseEntity.ok(listClients);
     }
     
@@ -54,7 +55,7 @@ public class ClientRestController {
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Client> post(@RequestBody Client client) {
-        Client newClient = clientRepository.save(client);
+        Client newClient = clientService.saveClient(client);
         return ResponseEntity.ok(newClient);
     }
     

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import com.costume.repository.crud.AdminCrudRepository;
+import com.costume.repository.dao.AdminDaoRepository;
 
 /**
  *
@@ -30,7 +30,7 @@ import com.costume.repository.crud.AdminCrudRepository;
 public class AdminRestController {
     
     @Autowired
-    private AdminCrudRepository adminRepository;
+    private AdminDaoRepository adminRepository;
     
     @GetMapping("all")
     public ResponseEntity<List<Admin>> listAdmis() {

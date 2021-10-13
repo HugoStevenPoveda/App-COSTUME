@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.costume.repository.crud;
+package com.costume.repository.dao;
 
-import com.costume.model.Message;
-import org.springframework.data.repository.CrudRepository;
+import com.costume.model.Admin;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author hugog
  */
-public interface MessageCrudRepository extends CrudRepository<Message, Integer> {
+public interface AdminDaoRepository extends JpaRepository<Admin, Integer> {
     
 }

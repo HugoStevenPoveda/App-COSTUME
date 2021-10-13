@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.costume.repository.crud;
+package com.costume.repository.dao;
 
 import org.springframework.data.repository.CrudRepository;
 import com.costume.model.Category;
@@ -12,7 +12,7 @@ import com.costume.model.Category;
  *
  * @author hugog
  */
-public interface CategoryCrudRepository  extends CrudRepository<Category, Integer>{
+public interface CategoryDaoRepository  extends CrudRepository<Category, Integer>{
     
     
 }

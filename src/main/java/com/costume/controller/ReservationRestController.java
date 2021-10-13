@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import com.costume.repository.crud.ReservationCrudRepository;
+import com.costume.service.ReservationService;
 
 /**
  *
@@ -29,11 +29,11 @@ import com.costume.repository.crud.ReservationCrudRepository;
 @RequestMapping("/api/Reservation")
 public class ReservationRestController {
     @Autowired
-    private ReservationCrudRepository reservationRepository;
+    private ReservationService reservationService;
     
     @GetMapping("/all")
     public ResponseEntity<List<Reservation>> listReservations() {
-         List<Reservation> listResevation = (List<Reservation>)reservationRepository.findAll();
+         List<Reservation> listResevation = reservationService.getAllReservation();
         return ResponseEntity.ok(listResevation);
     }
     
@@ -52,7 +52,7 @@ public class ReservationRestController {
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Reservation> post(@RequestBody Reservation reservation) {
-        Reservation newReservation=reservationRepository.save(reservation);
+        Reservation newReservation=reservationService.saveReservation(reservation);
         return ResponseEntity.ok(newReservation);
     }
     

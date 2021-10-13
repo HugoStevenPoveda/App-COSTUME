@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import com.costume.repository.crud.CostumeCrudRepository;
+import com.costume.service.CostumeService;
 
 /**
  *
@@ -27,14 +27,15 @@ import com.costume.repository.crud.CostumeCrudRepository;
  */
 @RestController
 @RequestMapping("/api/Costume")
+//@CrossOrigin(origins = "*",methods = {RequestMethod.GET})
 public class CostumeRestController {
     
     @Autowired
-    private CostumeCrudRepository costumeRepository;
+    private CostumeService costumeService;
     
     @GetMapping("/all")
     public ResponseEntity<List<Costume>> getAllCostume() {
-          List<Costume> listCostumes =(List<Costume>)costumeRepository.findAll();
+          List<Costume> listCostumes =costumeService.getAllCostume();
         return ResponseEntity.ok(listCostumes);
     }
     
@@ -53,7 +54,7 @@ public class CostumeRestController {
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Costume> postCostume(@RequestBody Costume costume) {
-        Costume newCostume = costumeRepository.save(costume);
+        Costume newCostume = costumeService.saveCostume(costume);
         /** @TODO */
         return ResponseEntity.ok(newCostume);
     }

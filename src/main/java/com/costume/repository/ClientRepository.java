@@ -5,9 +5,12 @@
  */
 package com.costume.repository;
 
-import com.costume.repository.crud.ClientCrudRepository;
+import com.costume.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import com.costume.repository.dao.ClientDaoRepository;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -15,7 +18,25 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class ClientRepository {
+
     @Autowired
-    private ClientCrudRepository clientCrudRepository;
-    
+    private ClientDaoRepository clientDaoRepository;
+
+    public List<Client> getAllClient() {
+        List<Client> listClients = (List<Client>) clientDaoRepository.findAll();
+
+        return listClients;
+    }
+
+    public Optional<Client> getClient(Integer id) {
+        Optional<Client> clientGeById = clientDaoRepository.findById(id);
+
+        return clientGeById;
+    }
+
+    public Client saveClient(Client client) {
+        Client newClient = clientDaoRepository.save(client);
+        return newClient;
+    }
+
 }
