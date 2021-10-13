@@ -5,14 +5,19 @@
  */
 package com.costume.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import com.costume.model.Category;
+import com.costume.repository.crud.CategoryCrudRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author hugog
  */
-public interface CategoryRepository  extends CrudRepository<Category, Integer>{
+
+@Repository
+public class CategoryRepository {
     
+    @Autowired
+    private CategoryCrudRepository categoryCrudRepository;
     
 }

@@ -6,7 +6,6 @@
 package com.costume.controller;
 
 import com.costume.model.Message;
-import com.costume.repository.MessageRepository;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import com.costume.repository.crud.MessageCrudRepository;
 
 /**
  *
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RequestMapping("/api/Message")
 public class MessageRestController {
     @Autowired
-    private MessageRepository messageRepository;
+    private MessageCrudRepository messageRepository;
     
     @GetMapping("/all")
     public ResponseEntity<List<Message>> listaLLMesage() {

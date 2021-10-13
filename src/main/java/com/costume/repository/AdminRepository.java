@@ -5,13 +5,17 @@
  */
 package com.costume.repository;
 
-import com.costume.model.Admin;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.costume.repository.crud.AdminCrudRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author hugog
  */
-public interface AdminRepository extends JpaRepository<Admin, Integer> {
+@Repository
+public class AdminRepository {
     
+    @Autowired
+    private AdminCrudRepository adminCrudRepository;
 }

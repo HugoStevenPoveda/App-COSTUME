@@ -6,7 +6,6 @@
 package com.costume.controller;
 
 import com.costume.model.Category;
-import com.costume.repository.CategoryRepository;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import com.costume.repository.crud.CategoryCrudRepository;
 
 /**
  *
@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CategoryRestController {
     
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryCrudRepository categoryRepository;
     
     @GetMapping("/all")
     public ResponseEntity<List<Category>> getAllCategory() {

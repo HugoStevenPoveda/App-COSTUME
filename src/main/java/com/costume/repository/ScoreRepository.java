@@ -5,13 +5,18 @@
  */
 package com.costume.repository;
 
-import com.costume.model.Score;
-import org.springframework.data.repository.CrudRepository;
+import com.costume.repository.crud.ScoreCrudRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author hugog
  */
-public interface ScoreRepository extends CrudRepository<Score, Integer> {
+
+@Repository
+public class ScoreRepository {
+    @Autowired
+    private ScoreCrudRepository scoreCrudRepository;
     
 }

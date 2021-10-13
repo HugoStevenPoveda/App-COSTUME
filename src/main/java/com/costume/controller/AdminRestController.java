@@ -6,7 +6,6 @@
 package com.costume.controller;
 
 import com.costume.model.Admin;
-import com.costume.repository.AdminRepository;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import com.costume.repository.crud.AdminCrudRepository;
 
 /**
  *
@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class AdminRestController {
     
     @Autowired
-    private AdminRepository adminRepository;
+    private AdminCrudRepository adminRepository;
     
     @GetMapping("all")
     public ResponseEntity<List<Admin>> listAdmis() {

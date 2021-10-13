@@ -6,7 +6,6 @@
 package com.costume.controller;
 
 import com.costume.model.Costume;
-import com.costume.repository.CostumeRepository;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import com.costume.repository.crud.CostumeCrudRepository;
 
 /**
  *
@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CostumeRestController {
     
     @Autowired
-    private CostumeRepository costumeRepository;
+    private CostumeCrudRepository costumeRepository;
     
     @GetMapping("/all")
     public ResponseEntity<List<Costume>> getAllCostume() {

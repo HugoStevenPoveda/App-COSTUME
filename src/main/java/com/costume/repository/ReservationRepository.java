@@ -5,13 +5,17 @@
  */
 package com.costume.repository;
 
-import com.costume.model.Reservation;
-import org.springframework.data.repository.CrudRepository;
+import com.costume.repository.crud.ReservationCrudRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author hugog
  */
-public interface ReservationRepository extends CrudRepository<Reservation, Integer> {
+@Repository
+public class ReservationRepository {
+    @Autowired
+    private ReservationCrudRepository reservationCrudRepository;
     
 }

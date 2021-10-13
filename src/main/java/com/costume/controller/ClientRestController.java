@@ -6,7 +6,6 @@
 package com.costume.controller;
 
 import com.costume.model.Client;
-import com.costume.repository.ClientRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import com.costume.repository.crud.ClientCrudRepository;
 
 /**
  *
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RequestMapping("/api/Client")
 public class ClientRestController {
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientCrudRepository clientRepository;
     
     @GetMapping("/all")
     public ResponseEntity<List<Client>>listClients() {

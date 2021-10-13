@@ -5,13 +5,18 @@
  */
 package com.costume.repository;
 
-import com.costume.model.Costume;
-import org.springframework.data.repository.CrudRepository;
+import com.costume.repository.crud.CostumeCrudRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author hugog
  */
-public interface CostumeRepository extends CrudRepository<Costume, Integer> {
+@Repository
+public class CostumeRepository {
+    
+    @Autowired
+    private CostumeCrudRepository costumeCrudRepository;
     
 }

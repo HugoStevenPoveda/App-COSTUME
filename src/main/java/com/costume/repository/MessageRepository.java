@@ -5,13 +5,19 @@
  */
 package com.costume.repository;
 
-import com.costume.model.Message;
-import org.springframework.data.repository.CrudRepository;
+import com.costume.repository.crud.MessageCrudRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author hugog
  */
-public interface MessageRepository extends CrudRepository<Message, Integer> {
+
+@Repository
+public class MessageRepository {
+    
+    @Autowired
+    private MessageCrudRepository messageCrudRepository;
     
 }

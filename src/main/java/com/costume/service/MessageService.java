@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.costume.repository;
+package com.costume.service;
 
-import com.costume.repository.crud.ClientCrudRepository;
+import com.costume.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author hugog
  */
-@Repository
-public class ClientRepository {
+@Service
+public class MessageService {
     @Autowired
-    private ClientCrudRepository clientCrudRepository;
+    private MessageRepository messageRepository;
     
 }
