@@ -6,7 +6,9 @@
 package com.costume.service;
 
 import com.costume.model.Category;
+import com.costume.model.Costume;
 import com.costume.repository.CategoryRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,35 +20,35 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CategoryService {
+
     @Autowired
     private CategoryRepository categoryRepository;
-    
-    
-    public List<Category>getAllCategory(){
-        List<Category> listCategory =categoryRepository.getAllCategory();
+
+    public List<Category> getAllCategory() {
+        List<Category> listCategory = categoryRepository.getAllCategory();
         return listCategory;
     }
-    
-    public Category saveCategory(Category category){
+
+    public Category saveCategory(Category category) {
         Category newCategory;
-        if (category.getId() == null){
-             newCategory = categoryRepository.saveCategory(category);
-             return newCategory;
-        }else{
-            Optional<Category> categoryExists= categoryRepository.getCategory(category.getId());
-            if(categoryExists.isPresent()){
-                 return category;
-            }else{
-              newCategory= categoryRepository.saveCategory(category);
-              return newCategory;
+        if (category.getId() == null) {
+            newCategory = categoryRepository.saveCategory(category);
+            List<Costume> cotume = new ArrayList<>();
+            newCategory.setCostumes(cotume);
+            return newCategory;
+        } else {
+            Optional<Category> categoryExists = categoryRepository.getCategory(category.getId());
+            if (categoryExists.isPresent()) {
+                return category;
+            } else {
+                newCategory = categoryRepository.saveCategory(category);
+                List<Costume> cotume = new ArrayList<>();
+                newCategory.setCostumes(cotume);
+                return newCategory;
             }
-        
-        
+
         }
-        
+
     }
-    
-    
-    
-    
+
 }
