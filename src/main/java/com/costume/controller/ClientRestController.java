@@ -52,7 +52,7 @@ public class ClientRestController {
         return null;
     }
     
-    @PostMapping("/save")
+    @PostMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Client> post(@RequestBody Client client) {
         Client newClient = clientService.saveClient(client);

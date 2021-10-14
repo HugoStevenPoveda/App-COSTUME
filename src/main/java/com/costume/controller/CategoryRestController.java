@@ -52,7 +52,7 @@ public class CategoryRestController {
        
     }
     
-    @PostMapping("/save")
+    @PostMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Category> crearCategory(@RequestBody Category category) {
         Category newCategory = categoryService.saveCategory(category);

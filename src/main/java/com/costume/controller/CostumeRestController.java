@@ -51,7 +51,7 @@ public class CostumeRestController {
         return null;
     }
     
-    @PostMapping("/save")
+    @PostMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Costume> postCostume(@RequestBody Costume costume) {
         Costume newCostume = costumeService.saveCostume(costume);

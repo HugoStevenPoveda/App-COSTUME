@@ -54,7 +54,7 @@ public class MessageRestController {
         return null;
     }
     
-    @PostMapping("/save")
+    @PostMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Message> postMessage(@RequestBody Message message ) {
         Message newMessage = messageService.saveMessage(message);

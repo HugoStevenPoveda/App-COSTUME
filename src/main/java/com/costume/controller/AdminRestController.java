@@ -51,7 +51,7 @@ public class AdminRestController {
         return null;
     }
     
-    @PostMapping("/save")
+    @PostMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Admin> post(@RequestBody Admin admin) {
         Admin newAdmin=adminRepository.save(admin);

@@ -50,7 +50,7 @@ public class ScoreRestController {
         return null;
     }
     
-    @PostMapping("/save")
+    @PostMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Score> post(@RequestBody Score score) {
         Score newScore = scoreRepository.save(score);

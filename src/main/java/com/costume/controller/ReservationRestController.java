@@ -49,7 +49,7 @@ public class ReservationRestController {
         return null;
     }
     
-    @PostMapping("/save")
+    @PostMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Reservation> post(@RequestBody Reservation reservation) {
         Reservation newReservation=reservationService.saveReservation(reservation);
