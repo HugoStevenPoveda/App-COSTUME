@@ -32,9 +32,9 @@ public class ReservationRestController {
     private ReservationService reservationService;
     
     @GetMapping("/all")
-    public ResponseEntity<List<Reservation>> listReservations() {
-         List<Reservation> listResevation = reservationService.getAllReservation();
-        return ResponseEntity.ok(listResevation);
+    public List<Reservation>listReservations() {
+         
+        return reservationService.getAllReservation();
     }
     
     @GetMapping("/{id}")
@@ -49,11 +49,11 @@ public class ReservationRestController {
         return null;
     }
     
-    @PostMapping("/all")
+    @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Reservation> post(@RequestBody Reservation reservation) {
-        Reservation newReservation=reservationService.saveReservation(reservation);
-        return ResponseEntity.ok(newReservation);
+    public Reservation post(@RequestBody Reservation reservation) {
+       
+        return reservationService.saveReservation(reservation);
     }
     
     @DeleteMapping("/{id}")

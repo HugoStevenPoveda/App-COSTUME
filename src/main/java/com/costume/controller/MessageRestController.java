@@ -34,10 +34,10 @@ public class MessageRestController {
     private MessageService messageService;
     
     @GetMapping("/all")
-    public ResponseEntity<List<Message>> listaLLMesage() {
-        List<Message> listMessages = messageService.getAllMessage();
+    public List<Message> listaLLMesage() {
+       
         
-        return ResponseEntity.ok(listMessages);
+        return messageService.getAllMessage();
     }
         
         
@@ -54,11 +54,11 @@ public class MessageRestController {
         return null;
     }
     
-    @PostMapping("/all")
+    @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Message> postMessage(@RequestBody Message message ) {
-        Message newMessage = messageService.saveMessage(message);
-        return ResponseEntity.ok(newMessage);
+    public Message postMessage(@RequestBody Message message ) {
+        
+        return messageService.saveMessage(message);
     }
     
     @DeleteMapping("/{id}")

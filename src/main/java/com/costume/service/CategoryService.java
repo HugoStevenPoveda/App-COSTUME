@@ -33,8 +33,7 @@ public class CategoryService {
         Category newCategory;
         if (category.getId() == null) {
             newCategory = categoryRepository.saveCategory(category);
-            List<Costume> cotume = new ArrayList<>();
-            newCategory.setCostumes(cotume);
+            newCategory.setCostumes(new ArrayList<>());
             return newCategory;
         } else {
             Optional<Category> categoryExists = categoryRepository.getCategory(category.getId());
@@ -42,8 +41,7 @@ public class CategoryService {
                 return category;
             } else {
                 newCategory = categoryRepository.saveCategory(category);
-                List<Costume> cotume = new ArrayList<>();
-                newCategory.setCostumes(cotume);
+                newCategory.setCostumes(new ArrayList<>());
                 return newCategory;
             }
 

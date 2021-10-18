@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.costume.service.CategoryService;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -27,16 +29,16 @@ import com.costume.service.CategoryService;
  */
 @RestController
 @RequestMapping("/api/Category")
-//@CrossOrigin(origins = "*",methods = {RequestMethod.GET})
+@CrossOrigin(origins = "*",methods = {RequestMethod.GET , RequestMethod.POST})
 public class CategoryRestController {
     
     @Autowired
     private CategoryService categoryService;
     
     @GetMapping("/all")
-    public ResponseEntity<List<Category>> getAllCategory() {
-        List<Category>listCategorys = categoryService.getAllCategory();
-        return  ResponseEntity.ok(listCategorys) ;
+    public List<Category> getAllCategory() {
+        return  categoryService.getAllCategory();
+        
     }
     
     @GetMapping("/{id}")
@@ -52,13 +54,13 @@ public class CategoryRestController {
        
     }
     
-    @PostMapping("/all")
+    @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Category> crearCategory(@RequestBody Category category) {
-        Category newCategory = categoryService.saveCategory(category);
-        
-        return ResponseEntity.ok(newCategory);
+    public Category crearCategory(@RequestBody Category category) {
+        return categoryService.saveCategory(category);
+         
     }
+        
     
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable String id) {

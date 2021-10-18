@@ -34,9 +34,9 @@ public class CostumeRestController {
     private CostumeService costumeService;
     
     @GetMapping("/all")
-    public ResponseEntity<List<Costume>> getAllCostume() {
-          List<Costume> listCostumes =costumeService.getAllCostume();
-        return ResponseEntity.ok(listCostumes);
+    public List<Costume> getAllCostume() {
+         
+        return costumeService.getAllCostume();
     }
     
     @GetMapping("/{id}")
@@ -51,12 +51,12 @@ public class CostumeRestController {
         return null;
     }
     
-    @PostMapping("/all")
+    @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Costume> postCostume(@RequestBody Costume costume) {
-        Costume newCostume = costumeService.saveCostume(costume);
-        /** @TODO */
-        return ResponseEntity.ok(newCostume);
+    public Costume postCostume(@RequestBody Costume costume) {
+        
+        
+        return costumeService.saveCostume(costume);
     }
     
     @DeleteMapping("/{id}")

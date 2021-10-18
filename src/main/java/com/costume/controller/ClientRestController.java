@@ -33,9 +33,9 @@ public class ClientRestController {
     private ClientService clientService;
     
     @GetMapping("/all")
-    public ResponseEntity<List<Client>>listClients() {
-           List<Client> listClients = clientService.getAllClient();
-        return ResponseEntity.ok(listClients);
+    public List<Client>listClients() {
+           
+        return clientService.getAllClient();
     }
     
         
@@ -52,11 +52,11 @@ public class ClientRestController {
         return null;
     }
     
-    @PostMapping("/all")
+    @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Client> post(@RequestBody Client client) {
-        Client newClient = clientService.saveClient(client);
-        return ResponseEntity.ok(newClient);
+    public Client post(@RequestBody Client client) {
+        
+        return clientService.saveClient(client);
     }
     
     @DeleteMapping("/{id}")

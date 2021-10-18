@@ -33,9 +33,9 @@ public class AdminRestController {
     private AdminDaoRepository adminRepository;
     
     @GetMapping("all")
-    public ResponseEntity<List<Admin>> listAdmis() {
-       List<Admin> listAdmins =adminRepository.findAll();
-        return ResponseEntity.ok(listAdmins);
+    public List<Admin> listAdmis() {
+      
+        return adminRepository.findAll();
         
     }
     
@@ -51,11 +51,11 @@ public class AdminRestController {
         return null;
     }
     
-    @PostMapping("/all")
+    @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Admin> post(@RequestBody Admin admin) {
+    public Admin post(@RequestBody Admin admin) {
         Admin newAdmin=adminRepository.save(admin);
-        return ResponseEntity.ok(newAdmin);
+        return adminRepository.save(admin);
     }
     
     @DeleteMapping("/{id}")

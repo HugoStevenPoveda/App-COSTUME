@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import com.costume.repository.dao.ScoreDaoRepository;
+import com.costume.service.ScoreService;
 
 /**
  *
@@ -29,12 +29,12 @@ import com.costume.repository.dao.ScoreDaoRepository;
 @RequestMapping("/api/Score")
 public class ScoreRestController {
     @Autowired
-    private ScoreDaoRepository scoreRepository;
+    private ScoreService scoreService;
     
     @GetMapping("/all")
-    public ResponseEntity<List<Score> > listScores() {
-          List<Score> listScore=(List<Score> ) scoreRepository.findAll();
-        return ResponseEntity.ok(listScore);
+    public List<Score> listScores() {
+           /** @TODO*/
+        return null;
         
     }
     
@@ -50,11 +50,11 @@ public class ScoreRestController {
         return null;
     }
     
-    @PostMapping("/all")
+    @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Score> post(@RequestBody Score score) {
-        Score newScore = scoreRepository.save(score);
-        return ResponseEntity.ok(newScore);
+    public Score post(@RequestBody Score score) {
+        /** @TODO*/
+        return null;
     }
     
     @DeleteMapping("/{id}")
