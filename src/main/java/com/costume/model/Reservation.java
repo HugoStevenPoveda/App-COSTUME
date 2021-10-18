@@ -45,7 +45,7 @@ public class Reservation implements Serializable {
     private Calendar devolutionDate;
     
     @Column(nullable = false,length = 255)
-    private String status = "Created";
+    private String status = "created";
   
     @ManyToOne
     @JsonIgnoreProperties({"reservations"})
