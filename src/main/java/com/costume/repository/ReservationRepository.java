@@ -18,14 +18,14 @@ import java.util.Optional;
  */
 @Repository
 public class ReservationRepository {
+
     @Autowired
     private ReservationDaoRepository reservationDaoRepository;
-    
+
     public List<Reservation> getAllReservation() {
-        List<Reservation> listReservation = (List<Reservation>)reservationDaoRepository.findAll();
+        List<Reservation> listReservation = (List<Reservation>) reservationDaoRepository.findAll();
         return listReservation;
     }
-
 
     public Optional<Reservation> getReservation(Integer id) {
         Optional<Reservation> reservationGeById = reservationDaoRepository.findById(id);
@@ -37,5 +37,20 @@ public class ReservationRepository {
         Reservation newReservation = reservationDaoRepository.save(reservation);
         return newReservation;
     }
-    
+
+    public Reservation UpdateReservation(Reservation reservation) {
+        Optional<Reservation> reservetionOptional = reservationDaoRepository
+                .findById(reservation.getIdReservation());
+        if (reservetionOptional.isPresent()) {
+            return reservation;
+        }
+        return null;
+    }
+
+    public void deleteReservation(Integer id) {
+
+        reservationDaoRepository.deleteById(id);
+
+    }
+
 }

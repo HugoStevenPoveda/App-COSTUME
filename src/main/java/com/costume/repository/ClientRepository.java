@@ -39,4 +39,19 @@ public class ClientRepository {
         return newClient;
     }
 
+    public Client updateClient(Client client) {
+
+        Optional<Client> clientOptional = clientDaoRepository.findById(client.getIdClient());
+        if (clientOptional.isPresent()) {
+            return client;
+        }
+        return null;
+    }
+
+    public void deleteClient(Integer id) {
+
+        clientDaoRepository.deleteById(id);
+
+    }
+
 }

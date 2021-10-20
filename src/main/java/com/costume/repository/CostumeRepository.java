@@ -18,28 +18,38 @@ import java.util.Optional;
  */
 @Repository
 public class CostumeRepository {
-    
+
     @Autowired
     private CostumeDaoRepository costumeDaoRepository;
-    
-    
-    public List<Costume> getAllCostume(){
-        List<Costume> listCostumes =(List<Costume>)costumeDaoRepository.findAll();
-        
+
+    public List<Costume> getAllCostume() {
+        List<Costume> listCostumes = (List<Costume>) costumeDaoRepository.findAll();
+
         return listCostumes;
     }
-    
-    
-    public  Optional<Costume> getCostume(Integer id ){
+
+    public Optional<Costume> getCostume(Integer id) {
         Optional<Costume> costumeGeById = costumeDaoRepository.findById(id);
-    
-    return costumeGeById;
+
+        return costumeGeById;
     }
-    
-    
-    public Costume saveCostume(Costume costume){
+
+    public Costume saveCostume(Costume costume) {
         Costume newCostume = costumeDaoRepository.save(costume);
-    return newCostume;
+        return newCostume;
     }
-    
+
+    public Costume UpdateCostume(Costume costume) {
+        Optional<Costume> costumeOptional = costumeDaoRepository.findById(costume.getId());
+        if (costumeOptional.isPresent()) {
+            return costume;
+        }
+        return null;
+    }
+
+    public void deleteCostume(Integer id) {
+
+        costumeDaoRepository.deleteById(id);
+
+    }
 }

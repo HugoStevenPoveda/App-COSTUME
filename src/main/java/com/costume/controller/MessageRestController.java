@@ -48,10 +48,9 @@ public class MessageRestController {
         return null;
     }
     
-    @PutMapping("/{id}")
-    public ResponseEntity<?> put(@PathVariable String id, @RequestBody Object input) {
-        /** @TODO*/
-        return null;
+    @PutMapping("/update")
+    public Message put( @RequestBody Message message) {
+        return messageService.updateMessage(message);
     }
     
     @PostMapping("/save")
@@ -62,9 +61,9 @@ public class MessageRestController {
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id) {
-        /** @TODO*/
-        return null;
+    public void delete(@PathVariable Integer id) {
+       messageService.deleteMessage(id);
+            
     }
     
 }

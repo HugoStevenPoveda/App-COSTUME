@@ -46,5 +46,31 @@ public class MessageService {
         }
 
     }
+    
+    
+    public Message updateMessage(Message message) {
+        Message messageForUpdate = messageRepository.UpdateMessage(message);
+        if (messageForUpdate!= null) {
+            
+            Message newMessage = messageForUpdate;
+            newMessage.setMessageText(message.getMessageText());
+            newMessage.setCostume(message.getCostume());
+            newMessage.setClient(message.getClient());
+            messageRepository.saveMessage(newMessage);
+            return newMessage;
+        }
+
+        return null;
+    }
+
+    public void deleteMessage(Integer id) {
+        Optional<Message> messageExits = messageRepository.getMessage(id);
+        if (messageExits.isPresent()) {
+            messageRepository.deleteMessage(id);
+
+        }
+
+    }
+    
 
 }

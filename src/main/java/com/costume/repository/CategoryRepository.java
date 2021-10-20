@@ -16,27 +16,40 @@ import com.costume.repository.dao.CategoryDaoRepository;
  *
  * @author hugog
  */
-
 @Repository
 public class CategoryRepository {
-    
+
     @Autowired
     private CategoryDaoRepository categoryDaoRepository;
-    
-    public List<Category>getAllCategory(){
-        List<Category> listCategory =(List<Category>) categoryDaoRepository.findAll();
+
+    public List<Category> getAllCategory() {
+        List<Category> listCategory = (List<Category>) categoryDaoRepository.findAll();
         return listCategory;
     }
-    
-    public Category saveCategory(Category category){
+
+    public Category saveCategory(Category category) {
         Category newCategory = categoryDaoRepository.save(category);
         return newCategory;
     }
-    
-    public Optional<Category> getCategory(Integer id){
+
+    public Optional<Category> getCategory(Integer id) {
         Optional<Category> categoryById = categoryDaoRepository.findById(id);
-    return categoryById ;
+        return categoryById;
     }
-    
-    
+
+    public Category updateCategory(Category category) {
+
+        Optional<Category> categrOptional = categoryDaoRepository.findById(category.getId());
+        if (categrOptional.isPresent()) {
+            return category;
+        }
+        return null;
+    }
+
+    public void deleteCategory(Integer id) {
+
+        categoryDaoRepository.deleteById(id);
+
+    }
+
 }

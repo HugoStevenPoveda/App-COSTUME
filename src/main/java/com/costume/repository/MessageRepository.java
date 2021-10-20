@@ -39,4 +39,17 @@ public class MessageRepository {
         return newMessage;
     }
 
+    public Message UpdateMessage(Message message) {
+        Optional<Message> messaOptional = messageDaoRepository.findById(message.getIdMessage());
+        if (messaOptional.isPresent()) {
+            return message;
+        }
+        return null;
+    }
+
+    public void deleteMessage(Integer id) {
+
+        messageDaoRepository.deleteById(id);
+    }
+
 }

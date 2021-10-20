@@ -22,19 +22,14 @@ public class CostumeService {
     @Autowired
     private CostumeRepository costumeRepository;
 
-    
-    
     public List<Costume> getAllCostume() {
         List<Costume> listCostumes = costumeRepository.getAllCostume();
         return listCostumes;
     }
 
-    
     /**
      * permite validar cuando costume viene con id o sin id
-     */  
-     
-     
+     */
     public Costume saveCostume(Costume costume) {
         Costume newCostume;
         if (costume.getId() == null) {
@@ -55,4 +50,30 @@ public class CostumeService {
 
     }
 
+    public Costume updateCostume(Costume costume) {
+        Costume costumeForUpdate = costumeRepository.UpdateCostume(costume);
+        if (costumeForUpdate != null) {
+            Costume newCostume = costumeForUpdate;
+            newCostume.setName(costume.getName());
+            newCostume.setBrand(costume.getBrand());
+            newCostume.setYear(costume.getYear());
+            newCostume.setDescription(costume.getDescription());
+            newCostume.setCategory(costume.getCategory());
+            costumeRepository.saveCostume(newCostume);
+            return newCostume;
+        }
+
+        return null;
+    }
+
+    public void deleteCostume(Integer id) {
+        Optional<Costume> costumeExits = costumeRepository.getCostume(id);
+        if (costumeExits.isPresent()) {
+            costumeRepository.deleteCostume(id);
+
+        }
+
+    }
+    
+    
 }

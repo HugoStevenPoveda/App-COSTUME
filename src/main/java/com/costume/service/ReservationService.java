@@ -27,7 +27,6 @@ public class ReservationService {
         return listReservation;
     }
 
-    
     public Reservation saveReservation(Reservation reservation) {
         Reservation newReservation;
         if (reservation.getIdReservation() == null) {
@@ -43,6 +42,35 @@ public class ReservationService {
                 return newReservation;
 
             }
+
+        }
+
+    }
+
+    public Reservation updateReservation(Reservation reservation) {
+        Reservation reservationForUpdate = reservationRepository
+                .UpdateReservation(reservation);
+        if (reservationForUpdate != null) {
+            Reservation newReser = reservationForUpdate;
+            newReser.setStartDate(reservation.getStartDate());
+            newReser.setDevolutionDate(reservation.getDevolutionDate());
+            newReser.setCostume(reservation.getCostume());
+            newReser.setClient(reservation.getClient());
+            reservationRepository.saveReservation(newReser);
+            return newReser;
+        }
+        return null;
+    }
+            
+            
+            
+
+
+
+    public void deleteReservation(Integer id) {
+        Optional<Reservation> reservationExits = reservationRepository.getReservation(id);
+        if (reservationExits.isPresent()) {
+            reservationRepository.deleteReservation(id);
 
         }
 

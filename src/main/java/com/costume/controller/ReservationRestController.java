@@ -43,10 +43,10 @@ public class ReservationRestController {
         return null;
     }
     
-    @PutMapping("/{id}")
-    public ResponseEntity<?> put(@PathVariable String id, @RequestBody Object input) {
-          /** @TODO */
-        return null;
+    @PutMapping("/update")
+    public Reservation put( @RequestBody Reservation reservation) {
+       
+        return reservationService.updateReservation(reservation);
     }
     
     @PostMapping("/save")
@@ -57,9 +57,8 @@ public class ReservationRestController {
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id) {
-          /** @TODO */
-        return null;
+    public void delete(@PathVariable Integer id) {
+          reservationService.deleteReservation(id);
     }
     
 }

@@ -46,10 +46,10 @@ public class ClientRestController {
         return null;
     }
     
-    @PutMapping("/{id}")
-    public ResponseEntity<?> put(@PathVariable String id, @RequestBody Object input) {
-        /** @TODO */
-        return null;
+    @PutMapping("/update")
+    public Client put(@RequestBody Client client) {
+        
+        return clientService.updateClient(client);
     }
     
     @PostMapping("/save")
@@ -60,9 +60,8 @@ public class ClientRestController {
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id) {
-        /** @TODO */
-        return null;
+    public void delete(@PathVariable Integer id) {
+       clientService.deleteClient(id);
     }
     
 }

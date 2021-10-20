@@ -6,7 +6,6 @@
 package com.costume.service;
 
 import com.costume.model.Category;
-import com.costume.model.Costume;
 import com.costume.repository.CategoryRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +27,16 @@ public class CategoryService {
         List<Category> listCategory = categoryRepository.getAllCategory();
         return listCategory;
     }
+    
+    public Category getCategoryId(Integer id){
+        Optional categOptional = categoryRepository.getCategory(id);
+        if(categOptional.isPresent()){
+            return (Category)categOptional.get();
+        
+        }
+        return null;
+    
+    }
 
     public Category saveCategory(Category category) {
         Category newCategory;
@@ -47,6 +56,27 @@ public class CategoryService {
 
         }
 
+    }
+    
+    public Category updateCategory(Category category){
+       Category categoryForUpdate= categoryRepository.updateCategory(category);
+       if (categoryForUpdate!=null){
+           Category newCategory = categoryForUpdate;
+           newCategory.setName(category.getName());
+           newCategory.setDescription(category.getDescription());
+           categoryRepository.saveCategory(category);
+           return newCategory;
+       }
+       return null;
+    }
+    
+    public void deleteCategory(Integer id){
+        Optional<Category> categoryExit =categoryRepository.getCategory(id);
+        if(categoryExit.isPresent()){
+            categoryRepository.deleteCategory(id);
+        
+        }
+    
     }
 
 }

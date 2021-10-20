@@ -35,34 +35,34 @@ public class CostumeRestController {
     
     @GetMapping("/all")
     public List<Costume> getAllCostume() {
-         
+        
         return costumeService.getAllCostume();
     }
     
     @GetMapping("/{id}")
     public Object get(@PathVariable String id) {
-        /** @TODO */
+        /**
+         * @TODO
+         */
         return null;
     }
     
-    @PutMapping("/{id}")
-    public ResponseEntity<?> put(@PathVariable String id, @RequestBody Object input) {
-        /** @TODO */
-        return null;
+    @PutMapping("/update")
+    public Costume put(@RequestBody Costume costume) {
+        
+        return costumeService.updateCostume(costume);
     }
     
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Costume postCostume(@RequestBody Costume costume) {
         
-        
         return costumeService.saveCostume(costume);
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id) {
-        /** @TODO */
-        return null;
+    public void  delete(@PathVariable Integer id) {
+         costumeService.deleteCostume(id);
     }
     
 }

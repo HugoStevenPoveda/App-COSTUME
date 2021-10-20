@@ -45,6 +45,32 @@ public class ClientService {
 
         }
 
+    
+    }
+    
+    public Client updateClient(Client client){
+       Client clientForUpdate= clientRepository.updateClient(client);
+       if (clientForUpdate!=null){
+           Client newClient = clientForUpdate;
+           newClient.setEmail(client.getEmail());
+           newClient.setPassword(client.getPassword());
+           newClient.setName(client.getName());
+           newClient.setAge(client.getAge());
+           clientRepository.saveClient(newClient);
+          
+           return newClient;
+       }
+       return null;
+    
+    }
+    
+     public void deleteClient(Integer id){
+        Optional<Client> clientExits =clientRepository.getClient(id);
+        if(clientExits.isPresent()){
+            clientRepository.deleteClient(id);
+        
+        }
+    
     }
 
 }

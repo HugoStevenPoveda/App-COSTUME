@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.costume.service.CategoryService;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -29,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @RestController
 @RequestMapping("/api/Category")
-@CrossOrigin(origins = "*",methods = {RequestMethod.GET , RequestMethod.POST})
+@CrossOrigin(origins = "http://localhost:4200")
 public class CategoryRestController {
     
     @Autowired
@@ -42,17 +40,17 @@ public class CategoryRestController {
     }
     
     @GetMapping("/{id}")
-    public Object get(@PathVariable String id) {
-         /** @TODO */
-        return null;
+    public Category get(@PathVariable Integer id) {
+        return categoryService.getCategoryId(id);
     }
     
-    @PutMapping
-    public ResponseEntity<Category> updateCategory( @RequestBody Category category) {
-         /** @TODO */
-        return null;
-       
+    @PutMapping("/update")
+    
+    public Category updateCategory( @RequestBody Category category) {
+        return categoryService.updateCategory(category);
+        
     }
+       
     
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
@@ -63,9 +61,7 @@ public class CategoryRestController {
         
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id) {
-          /** @TODO */
-        return null;
+    public void delete(@PathVariable Integer id) {
+          categoryService.deleteCategory(id);
+   }
     }
-    
-}
