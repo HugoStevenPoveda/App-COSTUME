@@ -58,6 +58,7 @@ public class ReservationRestController {
     }
     
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
     public boolean delete(@PathVariable Integer id) {
           return reservationService.deleteReservation(id);
     }

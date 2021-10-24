@@ -59,6 +59,7 @@ public class ScoreRestController {
     }
     
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> delete(@PathVariable String id) {
          /** @TODO*/
         return null;
