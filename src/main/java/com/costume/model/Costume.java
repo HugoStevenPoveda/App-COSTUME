@@ -45,7 +45,7 @@ public class Costume implements Serializable{
     
     @Column( nullable = false , length = 4)
     private Integer year;
-    @Column(nullable = false , length = 255)
+    @Column(nullable = false , length = 250)
     private String description;
     
     
