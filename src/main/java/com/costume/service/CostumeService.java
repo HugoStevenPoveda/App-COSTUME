@@ -60,8 +60,12 @@ public class CostumeService {
 
     }
 
-    public Costume updateCostume(Costume costume) {
+   public Costume updateCostume(Costume costume) {
         Costume costumeForUpdate = costumeRepository.UpdateCostume(costume);
+        Optional<Costume> costumeForCategory = costumeRepository.getCostume(costume.getId());
+        if(costumeForCategory.isPresent()){
+            costume.setCategory(costumeForCategory.get().getCategory());
+        }
         if (costumeForUpdate != null) {
             Costume newCostume = costumeForUpdate;
             newCostume.setName(costume.getName());
@@ -75,6 +79,7 @@ public class CostumeService {
 
         return null;
     }
+    
 
     public boolean  deleteCostume(Integer id) {
         Optional<Costume> costumeExits = costumeRepository.getCostume(id);
