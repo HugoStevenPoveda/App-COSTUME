@@ -60,7 +60,7 @@ public class CostumeRestController {
     }
     
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable Integer id) {
          return costumeService.deleteCostume(id);
     }
