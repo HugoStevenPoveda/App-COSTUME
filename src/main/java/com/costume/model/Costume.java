@@ -37,13 +37,13 @@ public class Costume implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @Column(nullable = false , length = 255)
+    @Column(nullable = false , length = 45)
     private String name;
     
-    @Column(nullable = false , length = 255)
+    @Column(nullable = false , length = 45)
     private String brand;
     
-    @Column( nullable = false , length = 11)
+    @Column( nullable = false , length = 4)
     private Integer year;
     @Column(nullable = false , length = 255)
     private String description;

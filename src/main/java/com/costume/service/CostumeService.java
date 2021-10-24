@@ -26,6 +26,16 @@ public class CostumeService {
         List<Costume> listCostumes = costumeRepository.getAllCostume();
         return listCostumes;
     }
+    
+     public Costume getCostumetId(Integer id){
+        Optional costumeOptional = costumeRepository.getCostume(id);
+        if(costumeOptional.isPresent()){
+            return (Costume)costumeOptional.get();
+        
+        }
+        return null;
+    
+    }
 
     /**
      * permite validar cuando costume viene con id o sin id
@@ -66,12 +76,14 @@ public class CostumeService {
         return null;
     }
 
-    public void deleteCostume(Integer id) {
+    public boolean  deleteCostume(Integer id) {
         Optional<Costume> costumeExits = costumeRepository.getCostume(id);
         if (costumeExits.isPresent()) {
             costumeRepository.deleteCostume(id);
+            return true;
 
         }
+        return false;
 
     }
     

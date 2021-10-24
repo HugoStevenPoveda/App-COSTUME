@@ -26,6 +26,16 @@ public class ClientService {
         List<Client> listClient = clientRepository.getAllClient();
         return listClient;
     }
+    
+     public Client getClientId(Integer id){
+        Optional clientOptional = clientRepository.getClient(id);
+        if(clientOptional.isPresent()){
+            return (Client)clientOptional.get();
+        
+        }
+        return null;
+    
+    }
 
     public Client saveClient(Client client) {
         Client newClient;
@@ -64,12 +74,14 @@ public class ClientService {
     
     }
     
-     public void deleteClient(Integer id){
+     public boolean deleteClient(Integer id){
         Optional<Client> clientExits =clientRepository.getClient(id);
         if(clientExits.isPresent()){
             clientRepository.deleteClient(id);
+            return true;
         
         }
+        return false;
     
     }
 

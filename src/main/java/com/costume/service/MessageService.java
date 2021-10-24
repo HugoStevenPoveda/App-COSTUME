@@ -26,6 +26,15 @@ public class MessageService {
         List<Message> listClient = messageRepository.getAllMessage();
         return listClient;
     }
+    public Message getMessagetId(Integer id){
+        Optional messageOptional = messageRepository.getMessage(id);
+        if(messageOptional.isPresent()){
+            return (Message)messageOptional.get();
+        
+        }
+        return null;
+    
+    }
 
     public Message saveMessage(Message message) {
         Message newMessage;
@@ -63,12 +72,13 @@ public class MessageService {
         return null;
     }
 
-    public void deleteMessage(Integer id) {
+    public boolean deleteMessage(Integer id) {
         Optional<Message> messageExits = messageRepository.getMessage(id);
         if (messageExits.isPresent()) {
             messageRepository.deleteMessage(id);
-
+            return true;
         }
+           return false;
 
     }
     

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.costume.service.CostumeService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  *
@@ -27,7 +27,7 @@ import com.costume.service.CostumeService;
  */
 @RestController
 @RequestMapping("/api/Costume")
-//@CrossOrigin(origins = "*",methods = {RequestMethod.GET})
+@CrossOrigin(origins = "http://localhost:4200")
 public class CostumeRestController {
     
     @Autowired
@@ -40,14 +40,13 @@ public class CostumeRestController {
     }
     
     @GetMapping("/{id}")
-    public Object get(@PathVariable String id) {
-        /**
-         * @TODO
-         */
-        return null;
+    public Costume get(@PathVariable Integer id) {
+        
+        return costumeService.getCostumetId(id);
     }
     
     @PutMapping("/update")
+     @ResponseStatus(HttpStatus.CREATED)
     public Costume put(@RequestBody Costume costume) {
         
         return costumeService.updateCostume(costume);
@@ -61,8 +60,8 @@ public class CostumeRestController {
     }
     
     @DeleteMapping("/{id}")
-    public void  delete(@PathVariable Integer id) {
-         costumeService.deleteCostume(id);
+    public boolean delete(@PathVariable Integer id) {
+         return costumeService.deleteCostume(id);
     }
     
 }

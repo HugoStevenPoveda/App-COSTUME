@@ -70,12 +70,13 @@ public class CategoryService {
        return null;
     }
     
-    public void deleteCategory(Integer id){
+    public boolean deleteCategory(Integer id){
         Optional<Category> categoryExit =categoryRepository.getCategory(id);
         if(categoryExit.isPresent()){
             categoryRepository.deleteCategory(id);
-        
+            return true;
         }
+        return false;
     
     }
 

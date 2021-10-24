@@ -45,7 +45,7 @@ public class CategoryRestController {
     }
     
     @PutMapping("/update")
-    
+    @ResponseStatus(HttpStatus.CREATED)
     public Category updateCategory( @RequestBody Category category) {
         return categoryService.updateCategory(category);
         
@@ -61,7 +61,7 @@ public class CategoryRestController {
         
     
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-          categoryService.deleteCategory(id);
+    public boolean delete(@PathVariable Integer id) {
+          return categoryService.deleteCategory(id);
    }
     }

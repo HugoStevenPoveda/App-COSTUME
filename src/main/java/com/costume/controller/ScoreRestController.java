@@ -45,6 +45,7 @@ public class ScoreRestController {
     }
     
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> put(@PathVariable String id, @RequestBody Object input) {
          /** @TODO*/
         return null;

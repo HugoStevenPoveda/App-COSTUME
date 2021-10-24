@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,27 +27,27 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  */
 @RestController
 @RequestMapping("/api/Message")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MessageRestController {
     @Autowired
     private MessageService messageService;
     
     @GetMapping("/all")
     public List<Message> listaLLMesage() {
-       
-        
         return messageService.getAllMessage();
     }
+       
+        
         
         
     
     @GetMapping("/{id}")
-    public Object get(@PathVariable String id) {
-        /** @TODO*/
-        return null;
+    public Message get(@PathVariable Integer id) {
+        return messageService.getMessagetId(id);
     }
     
     @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
     public Message put( @RequestBody Message message) {
         return messageService.updateMessage(message);
     }
@@ -61,8 +60,8 @@ public class MessageRestController {
     }
     
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-       messageService.deleteMessage(id);
+    public boolean delete(@PathVariable Integer id) {
+       return messageService.deleteMessage(id);
             
     }
     

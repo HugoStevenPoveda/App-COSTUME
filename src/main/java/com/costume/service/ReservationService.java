@@ -26,6 +26,16 @@ public class ReservationService {
         List<Reservation> listReservation = reservationRepository.getAllReservation();
         return listReservation;
     }
+    
+    public Reservation getReservationId(Integer id){
+        Optional reservationOptional = reservationRepository.getReservation(id);
+        if(reservationOptional.isPresent()){
+            return (Reservation)reservationOptional.get();
+        
+        }
+        return null;
+    
+    }
 
     public Reservation saveReservation(Reservation reservation) {
         Reservation newReservation;
@@ -67,12 +77,14 @@ public class ReservationService {
 
 
 
-    public void deleteReservation(Integer id) {
+    public boolean deleteReservation(Integer id) {
         Optional<Reservation> reservationExits = reservationRepository.getReservation(id);
         if (reservationExits.isPresent()) {
             reservationRepository.deleteReservation(id);
+            return true;
 
         }
+        return false;
 
     }
 
