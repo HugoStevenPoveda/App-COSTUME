@@ -5,8 +5,16 @@
  */
 package com.costume.service;
 
+import com.costume.model.Client;
+import com.costume.model.businessReports.Reports;
+import com.costume.model.businessReports.ReportsClient;
 import com.costume.model.Reservation;
+import com.costume.repository.ClientRepository;
 import com.costume.repository.ReservationRepository;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,20 +29,22 @@ public class ReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
+    @Autowired
+    private ClientRepository clientRepository;
 
     public List<Reservation> getAllReservation() {
         List<Reservation> listReservation = reservationRepository.getAllReservation();
         return listReservation;
     }
-    
-    public Reservation getReservationId(Integer id){
+
+    public Reservation getReservationId(Integer id) {
         Optional reservationOptional = reservationRepository.getReservation(id);
-        if(reservationOptional.isPresent()){
-            return (Reservation)reservationOptional.get();
-        
+        if (reservationOptional.isPresent()) {
+            return (Reservation) reservationOptional.get();
+
         }
         return null;
-    
+
     }
 
     public Reservation saveReservation(Reservation reservation) {
@@ -71,11 +81,6 @@ public class ReservationService {
         }
         return null;
     }
-            
-            
-            
-
-
 
     public boolean deleteReservation(Integer id) {
         Optional<Reservation> reservationExits = reservationRepository.getReservation(id);
@@ -85,6 +90,79 @@ public class ReservationService {
 
         }
         return false;
+
+    }
+
+    public Reports reporteCompleCancel() {
+        Reports reports = reservationRepository.reporteCompleCancel();
+        int comple = 0;
+        int cancel = 0;
+        List<Reservation> listReservation = getAllReservation();
+        for (Reservation res : listReservation) {
+            if (res.getStatus().equals("completed")) {
+                comple += 1;
+            }
+            if (res.getStatus().equals("cancelled")) {
+                cancel += 1;
+            }
+        }
+        reports.setCompleted(comple);
+        reports.setCancelled(cancel);
+
+        return reports;
+
+    }
+
+    public List<ReportsClient> reportsClient() {
+        List<Client> listClients = clientRepository.getAllClient();
+        List<ReportsClient> reportsClients = new ArrayList<>();
+
+        listClients.forEach(client -> {
+            int total = client.getReservations().size();
+            reportsClients.add(reservationRepository.reportsClient(total, client));
+
+        });
+        Collections.sort(reportsClients);
+
+        return reportsClients;
+
+    }
+
+    public List<Reservation> ReportReservation(Calendar startDate,
+             Calendar devolutionDate) {
+        List<Reservation> listReservations = getAllReservation();
+        List<Reservation> listCalendar = new ArrayList<>();
+
+        listReservations.forEach(res -> {
+
+            if (startDate.before(res.getStartDate())
+                    && devolutionDate.after(res.getStartDate())) {
+                listCalendar.add(res);
+
+            }
+        });
+
+        return listCalendar;
+
+    }
+
+    public Calendar strigTOCalendar(String fechaString) {
+
+        int posAnio = fechaString.indexOf("-");
+        int posMes = fechaString.lastIndexOf("-");
+        //AÑO 
+        String sAnio = fechaString.substring(0, posAnio);
+        int anio = Integer.parseInt(sAnio);
+        //Mes
+        String sMes = fechaString.substring(posAnio + 1, posMes);
+        int mes = Integer.parseInt(sMes);
+
+        //DIA
+        String sDia = fechaString.substring(posMes + 1);
+        int dia = Integer.parseInt(sDia);
+        Calendar calendar = new GregorianCalendar(anio, mes, dia);
+
+        return calendar;
 
     }
 

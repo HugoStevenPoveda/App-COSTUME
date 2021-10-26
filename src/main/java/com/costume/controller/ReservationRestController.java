@@ -5,6 +5,8 @@
  */
 package com.costume.controller;
 
+import com.costume.model.businessReports.Reports;
+import com.costume.model.businessReports.ReportsClient;
 import com.costume.model.Reservation;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.costume.service.ReservationService;
+import java.util.ArrayList;
+import java.util.Calendar;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
@@ -62,5 +66,26 @@ public class ReservationRestController {
     public boolean delete(@PathVariable Integer id) {
           return reservationService.deleteReservation(id);
     }
+    
+    @GetMapping("report-status")
+    public Reports reporteCompleCancel(){
+        return reservationService.reporteCompleCancel();
+     }
+     
+    @GetMapping("report-clients")
+     public List<ReportsClient> reportsClient(){
+         return reservationService.reportsClient();
+     }
+    @GetMapping("report-dates/{startDate}/{devolutionDate}")
+     public List<Reservation> reservationForDate(@PathVariable String startDate
+             ,@PathVariable String devolutionDate){
+         //TRANFORMA string en calendar
+         Calendar PathStartDate=reservationService.strigTOCalendar(startDate);
+         Calendar PathDevoluDate=reservationService.strigTOCalendar(devolutionDate);
+         
+         return reservationService.ReportReservation(PathStartDate, PathDevoluDate);
+     }
+    
+     
     
 }

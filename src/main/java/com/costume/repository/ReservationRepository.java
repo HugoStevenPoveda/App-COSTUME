@@ -5,6 +5,9 @@
  */
 package com.costume.repository;
 
+import com.costume.model.Client;
+import com.costume.model.businessReports.Reports;
+import com.costume.model.businessReports.ReportsClient;
 import com.costume.model.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,6 +24,7 @@ public class ReservationRepository {
 
     @Autowired
     private ReservationDaoRepository reservationDaoRepository;
+    
 
     public List<Reservation> getAllReservation() {
         List<Reservation> listReservation = (List<Reservation>) reservationDaoRepository.findAll();
@@ -52,5 +56,29 @@ public class ReservationRepository {
         reservationDaoRepository.deleteById(id);
 
     }
+    
+    
+    
+        
+    public Reports reporteCompleCancel(){
+        
+        Reports reports = new Reports();
+        
+        return reports;
+            
+    }
+    
+    public ReportsClient reportsClient(Integer total, Client client){
+       ReportsClient reportsClient = new ReportsClient(total,client);
+       return  reportsClient;
+    
+    }
+    
+    public Long reportReservation (Reservation reservation){
+       
+       return reservation.getStartDate().getTimeInMillis() ;
+       
+    }
+    
 
 }
